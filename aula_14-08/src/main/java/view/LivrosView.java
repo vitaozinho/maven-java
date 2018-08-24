@@ -13,6 +13,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import controller.LivroJdbcDAO;
+import controller.EditoraJdbcDAO;
 import controller.JdbUtil;
 import model.Livro;
 
@@ -30,8 +31,13 @@ public class LivrosView extends JFrame {
 	JTextField txtCPF = new JTextField();
 	JLabel cpf = new JLabel("CPF ESCRITOR");
 	
+	JTextField txtDel = new JTextField();
+	JLabel del = new JLabel ("DELETAR LIVRO");
+	
+	
 	JButton btnSalvar = new JButton("Salvar");
-
+	JButton btnDel = new JButton("Deletar");
+	
 	
     
 
@@ -60,11 +66,15 @@ public class LivrosView extends JFrame {
 		cpf.setBounds(10, 115, 70, 30);
 		txtCPF.setBounds(90, 115, 225, 30);
 	
+		paine.add(del);
+		paine.add(txtDel);
+		del.setBounds(350, 15 , 45, 30);
+		txtDel.setBounds(400, 15, 45, 30);
 		
 		
 	
 		paine.add(btnSalvar);
-		btnSalvar.setBounds(250, 250, 130, 30);
+		btnSalvar.setBounds(200, 250, 130, 30);
 		btnSalvar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
@@ -86,6 +96,22 @@ public class LivrosView extends JFrame {
 		
 		
 	});
+		paine.add(btnDel);
+		btnDel.setBounds(350, 250, 130, 30);
+		btnDel.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					
+					Connection connection = JdbUtil.getConnection();
+					LivroJdbcDAO livroJdbcDao = new LivroJdbcDAO(connection);
+					
+					livroJdbcDao.deletar(Integer.parseInt(txtDel.getText()));
+					
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
 	
 	this.setLayout(null);
 	this.setVisible(true);

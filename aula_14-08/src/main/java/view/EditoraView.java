@@ -25,8 +25,12 @@ public class EditoraView extends JFrame {
 	JTextField txtEnd = new JTextField();
 	JLabel end = new JLabel("ENDEREÇO: ");
 	
+	JTextField txtDel = new JTextField();
+	JLabel del = new JLabel ("DELETAR EDITORA");
+	
+	
 	JButton btnSalvar = new JButton("Salvar");
-
+	JButton btnDel = new JButton("Deletar");
 	
     
 
@@ -50,6 +54,10 @@ public class EditoraView extends JFrame {
 		end.setBounds(10, 85, 70, 30);
 		txtEnd.setBounds(90, 85, 225, 30);
 		
+		paine.add(del);
+		paine.add(txtDel);
+		del.setBounds(350, 15 , 45, 30);
+		txtDel.setBounds(400, 15, 45, 30);
 	
 		
 		
@@ -76,6 +84,22 @@ public class EditoraView extends JFrame {
 		
 		
 	});
+		paine.add(btnDel);
+		btnDel.setBounds(110, 250, 130, 30);
+		btnDel.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					
+					Connection connection = JdbUtil.getConnection();
+					EditoraJdbcDAO editoraJdbcDao = new EditoraJdbcDAO(connection);
+					
+					editoraJdbcDao.deletar(Integer.parseInt(txtCNPJ.getText()));
+					
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
 	
 	this.setLayout(null);
 	this.setVisible(true);

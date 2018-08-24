@@ -24,8 +24,8 @@ public class LivroJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
-	public void deletar(int idSelect) throws SQLException {
-		String sql = "delete from tb_livros where id='"+idSelect+"'";		
+	public void deletar(int cdSelect) throws SQLException {
+		String sql = "delete from tb_livros where cdLivro='"+cdSelect+"'";		
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();

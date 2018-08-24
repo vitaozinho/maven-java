@@ -24,8 +24,8 @@ public class EscritorJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
-	public void deletar(int idSelect) throws SQLException {
-		String sql = "delete from tb_escritor where id='"+idSelect+"'";		
+	public void deletar(int cpfSelect) throws SQLException {
+		String sql = "delete from tb_escritor where nrCPF='"+cpfSelect+"'";		
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
