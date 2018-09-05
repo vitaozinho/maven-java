@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -41,29 +42,33 @@ public class EditoraView extends JFrame {
 		
 		paine.add(cnpj);
 		paine.add(txtCNPJ);	
-		cnpj.setBounds(10, 15, 45, 30);
-		txtCNPJ.setBounds(90, 15, 225, 30);
+		cnpj.setFont(new Font("Arial", Font.PLAIN, 12));
+		cnpj.setBounds(10, 15, 150, 30);
+		txtCNPJ.setBounds(150, 15, 170, 30);
 		
 		paine.add(nome);
 		paine.add(txtNome);	
-		nome.setBounds(10, 50, 70, 30);
-		txtNome.setBounds(90, 50, 225, 30);	
+		nome.setFont(new Font("Arial", Font.PLAIN, 12));
+		nome.setBounds(10, 50, 150, 30);
+		txtNome.setBounds(150, 50, 170, 30);	
 		
 		paine.add(end);
 		paine.add(txtEnd);	
-		end.setBounds(10, 85, 70, 30);
-		txtEnd.setBounds(90, 85, 225, 30);
+		end.setFont(new Font("Arial", Font.PLAIN, 12));
+		end.setBounds(10, 85, 150, 30);
+		txtEnd.setBounds(150, 85, 170, 30);
 		
 		paine.add(del);
 		paine.add(txtDel);
-		del.setBounds(350, 15 , 45, 30);
-		txtDel.setBounds(400, 15, 45, 30);
+		del.setFont(new Font("Arial", Font.PLAIN, 12));
+		del.setBounds(350, 5 , 150, 30);
+		txtDel.setBounds(350, 35, 150, 30);
 	
 		
 		
 	
 		paine.add(btnSalvar);
-		btnSalvar.setBounds(250, 250, 130, 30);
+		btnSalvar.setBounds(210, 250, 130, 30);
 		btnSalvar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
@@ -85,7 +90,7 @@ public class EditoraView extends JFrame {
 		
 	});
 		paine.add(btnDel);
-		btnDel.setBounds(110, 250, 130, 30);
+		btnDel.setBounds(350, 250, 130, 30);
 		btnDel.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -105,6 +110,7 @@ public class EditoraView extends JFrame {
 	this.setVisible(true);
 	this.setSize(600, 330);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	this.setLocationRelativeTo(null);
 }
 public static void main( String[] args )
 {

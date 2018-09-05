@@ -32,7 +32,7 @@ public class EscritorView extends JFrame {
 	JLabel fk = new JLabel("CNPJ EDITORA");
 	
 	JTextField txtDel = new JTextField();
-	JLabel del = new JLabel ("DELETAR ESCRITOR");
+	JLabel del = new JLabel ("EXCLUIR ESCRITOR:");
 	
 	
 	JButton btnSalvar = new JButton("Salvar");
@@ -72,14 +72,14 @@ public class EscritorView extends JFrame {
 		paine.add(del);
 		paine.add(txtDel);
 		del.setFont(new Font("Arial", Font.PLAIN, 12));
-		del.setBounds(350, 15 , 100, 30);
-		txtDel.setBounds(400, 15, 45, 30);
+		del.setBounds(350, 15 , 150, 30);
+		txtDel.setBounds(350, 45, 150, 30);
 	
 		
 		
 	
 		paine.add(btnSalvar);
-		btnSalvar.setBounds(200, 250, 130, 30);
+		btnSalvar.setBounds(210, 250, 130, 30);
 		btnSalvar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
@@ -122,6 +122,7 @@ public class EscritorView extends JFrame {
 	this.setVisible(true);
 	this.setSize(600, 330);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	this.setLocationRelativeTo(null);
 }
 public static void main( String[] args )
 {
