@@ -1,7 +1,7 @@
 package view;
 
 
-import java.awt.Font;
+
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import controller.EditoraJdbcDAO;
 import controller.EscritorJdbcDAO;
 import controller.JdbUtil;
 import model.Escritor;
@@ -31,12 +30,8 @@ public class EscritorView extends JFrame {
 	JTextField txtFK = new JTextField();
 	JLabel fk = new JLabel("CNPJ EDITORA");
 	
-	JTextField txtDel = new JTextField();
-	JLabel del = new JLabel ("EXCLUIR ESCRITOR:");
-	
-	
 	JButton btnSalvar = new JButton("Salvar");
-	JButton btnDel = new JButton("Excluir");
+
 	
     
 
@@ -46,40 +41,30 @@ public class EscritorView extends JFrame {
 		Container paine = this.getContentPane();
 		
 		paine.add(cpf);
-		paine.add(txtCPF);
-		cpf.setFont(new Font("Arial", Font.PLAIN, 12));
+		paine.add(txtCPF);	
 		cpf.setBounds(10, 15, 45, 30);
-		txtCPF .setBounds(150, 15, 150, 30);
+		txtCPF .setBounds(90, 15, 225, 30);
 		
 		paine.add(nome);
 		paine.add(txtNome);	
-		nome.setFont(new Font("Arial", Font.PLAIN, 12));
-		nome.setBounds(10, 50, 150,30 );
-		txtNome.setBounds(150, 50, 150, 30);	
+		nome.setBounds(10, 50, 70, 30);
+		txtNome.setBounds(90, 50, 225, 30);	
 		
 		paine.add(end);
 		paine.add(txtEnd);	
-		end.setFont(new Font("Arial", Font.PLAIN, 12));
-		end.setBounds(10, 85, 150, 30);
-		txtEnd.setBounds(150, 85, 150, 30);
+		end.setBounds(10, 85, 70, 30);
+		txtEnd.setBounds(90, 85, 225, 30);
 		
 		paine.add(fk);
 		paine.add(txtFK);
-		fk.setFont(new Font("Arial", Font.PLAIN, 12));
-		fk.setBounds(10, 115, 150, 30);
-		txtFK.setBounds(150, 115, 150, 30);
-		
-		paine.add(del);
-		paine.add(txtDel);
-		del.setFont(new Font("Arial", Font.PLAIN, 12));
-		del.setBounds(350, 15 , 150, 30);
-		txtDel.setBounds(350, 45, 150, 30);
+		fk.setBounds(10, 115, 70, 30);
+		txtFK.setBounds(90, 115, 225, 30);
 	
 		
 		
 	
 		paine.add(btnSalvar);
-		btnSalvar.setBounds(210, 250, 130, 30);
+		btnSalvar.setBounds(250, 250, 130, 30);
 		btnSalvar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
@@ -101,28 +86,11 @@ public class EscritorView extends JFrame {
 		
 		
 	});
-		paine.add(btnDel);
-		btnDel.setBounds(350, 250, 130, 30);
-		btnDel.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					
-					Connection connection = JdbUtil.getConnection();
-					EscritorJdbcDAO escritorJdbcDao = new EscritorJdbcDAO(connection);
-					
-					escritorJdbcDao.deletar(Integer.parseInt(txtDel.getText()));
-					
-				}catch(Exception ex) {
-					ex.printStackTrace();
-				}
-			}
-		});
 	
 	this.setLayout(null);
 	this.setVisible(true);
 	this.setSize(600, 330);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	this.setLocationRelativeTo(null);
 }
 public static void main( String[] args )
 {

@@ -24,8 +24,8 @@ public class EditoraJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
-	public void deletar(int cnpjSelect) throws SQLException {
-		String sql = "delete from tb_editora where nrCNPJ ='"+cnpjSelect+"'";		
+	public void deletar(int idSelect) throws SQLException {
+		String sql = "delete from tb_editora where id='"+idSelect+"'";		
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
