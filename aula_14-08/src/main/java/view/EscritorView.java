@@ -7,10 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import controller.EditoraJdbcDAO;
 import controller.EscritorJdbcDAO;
@@ -20,7 +23,7 @@ import model.Editora;
 
 public class EscritorView extends JFrame {
 	
-	JTextField txtCPF = new JTextField();
+	JFormattedTextField txtCPF = new JFormattedTextField();
 	JLabel cpf = new JLabel("CPF: ");
 	
 	JTextField txtNome = new JTextField();
@@ -29,7 +32,7 @@ public class EscritorView extends JFrame {
 	JTextField txtEnd = new JTextField();
 	JLabel end = new JLabel("ENDEREÇO: ");
 	
-	JTextField txtFK = new JTextField();
+	JFormattedTextField txtFK = new JFormattedTextField();
 	JLabel fk = new JLabel("CNPJ EDITORA");
 	
 	JTextField txtDel = new JTextField();
@@ -43,6 +46,22 @@ public class EscritorView extends JFrame {
 
 	public EscritorView(){
 		super("Cadastro Escritor");
+		
+		try {
+				
+			MaskFormatter mcpf = new MaskFormatter("###.###.###/##");
+			mcpf.setPlaceholderCharacter('0');
+			mcpf.install(txtCPF);
+			
+			MaskFormatter mcnpj = new MaskFormatter("##.###.###/####-##");
+			mcnpj.setPlaceholderCharacter('0');
+			mcnpj.install(txtFK);
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
 		
 		Container paine = this.getContentPane();
 		
@@ -115,8 +134,12 @@ public class EscritorView extends JFrame {
 					
 					escritorJdbcDao.deletar(Integer.parseInt(txtDel.getText()));
 					
+					
+					
 				}catch(Exception ex) {
 					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null,"ERRO!");
+					
 				}
 			}
 		});

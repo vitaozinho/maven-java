@@ -8,10 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import controller.LivroJdbcDAO;
 import controller.EditoraJdbcDAO;
@@ -28,10 +30,10 @@ public class LivrosView extends JFrame {
 	JTextField txtPag = new JTextField();
 	JLabel pag = new JLabel("NÚMERO DE PÁGINAS: ");
 	
-	JTextField txtEditora = new JTextField();
+	JFormattedTextField txtEditora = new JFormattedTextField();
 	JLabel editora = new JLabel("CNPJ DA EDITORA: ");
 	
-	JTextField txtCPF = new JTextField();
+	JFormattedTextField txtCPF = new JFormattedTextField();
 	JLabel cpf = new JLabel("CPF ESCRITOR:");
 	
 	JTextField txtDel = new JTextField();
@@ -46,6 +48,21 @@ public class LivrosView extends JFrame {
 
 	public LivrosView(){
 		super("Cadastro Livros");
+		
+		try {
+			
+			MaskFormatter mcpf = new MaskFormatter("###.###.###/##");
+			mcpf.setPlaceholderCharacter('0');
+			mcpf.install(txtCPF);
+			
+			MaskFormatter mcnpj = new MaskFormatter("##.###.###/####-##");
+			mcnpj.setPlaceholderCharacter('0');
+			mcnpj.install(txtEditora);
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		Container paine = this.getContentPane();
 		

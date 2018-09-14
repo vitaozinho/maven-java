@@ -33,7 +33,7 @@ CREATE TABLE `tb_editora` (
   `nrCNPJ` int(11) NOT NULL,
   `nmEditora` varchar(50) NOT NULL,
   `endEditora` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tb_editora`
@@ -53,7 +53,7 @@ CREATE TABLE `tb_escritor` (
   `nmEscritor` varchar(100) NOT NULL,
   `endEscritor` varchar(100) DEFAULT NULL,
   `nrCnpjEditora` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tb_escritor`
@@ -74,7 +74,7 @@ CREATE TABLE `tb_livros` (
   `nrPag` int(11) DEFAULT NULL,
   `nrCnpjEditora` int(11) DEFAULT NULL,
   `nrCpfEscritor` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tb_livros`

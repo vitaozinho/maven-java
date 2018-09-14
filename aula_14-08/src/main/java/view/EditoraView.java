@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import controller.EditoraJdbcDAO;
 import controller.JdbUtil;
@@ -17,7 +19,7 @@ import model.Editora;
 
 public class EditoraView extends JFrame {
 	
-	JTextField txtCNPJ = new JTextField();
+	JFormattedTextField txtCNPJ = new JFormattedTextField();
 	JLabel cnpj = new JLabel("CNPJ: ");
 	
 	JTextField txtNome = new JTextField();
@@ -32,11 +34,22 @@ public class EditoraView extends JFrame {
 	
 	JButton btnSalvar = new JButton("Salvar");
 	JButton btnDel = new JButton("Deletar");
+	JButton btnAtt = new JButton("Atualizar"); //PARA TERMINAAR
 	
     
 
 	public EditoraView(){
 		super("Cadastro Editora");
+		try {
+				
+			MaskFormatter mcnpj = new MaskFormatter("##.###.###/####-##");
+			mcnpj.setPlaceholderCharacter('0');
+			mcnpj.install(txtCNPJ);
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		Container paine = this.getContentPane();
 		
@@ -89,6 +102,7 @@ public class EditoraView extends JFrame {
 		
 		
 	});
+				
 		paine.add(btnDel);
 		btnDel.setBounds(350, 250, 130, 30);
 		btnDel.addActionListener( new ActionListener() {

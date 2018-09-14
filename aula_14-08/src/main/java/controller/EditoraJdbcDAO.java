@@ -32,6 +32,19 @@ public class EditoraJdbcDAO {
 		prepareStatement.close();
 	}
 	
+	public void alterar(Editora c) {
+		String sql = "update tb_editora set nrCNPJ='"+c.getNrCNPJ()+"',nmEditora='"+c.getNmEditora()+"',endEditora='"+c.getEndEditora()+"';";
+		System.out.println(sql);
+		PreparedStatement prepareStatement;
+		try {
+			prepareStatement = this.conn.prepareStatement(sql);
+			prepareStatement.executeUpdate();
+            prepareStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
+	
 	public int listarEditora(Integer i) {
 		String sql = "select * from tb_editora where nrCNPJ = " + i + ";";
 		System.out.println(sql);
