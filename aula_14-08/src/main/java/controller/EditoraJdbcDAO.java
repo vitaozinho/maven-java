@@ -24,12 +24,31 @@ public class EditoraJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
-	public void deletar(int idSelect) throws SQLException {
-		String sql = "delete from tb_editora where id='"+idSelect+"'";		
+	public void deletar(int cnpjSelect) throws SQLException {
+		String sql = "delete from tb_editora where nrCNPJ ='"+cnpjSelect+"'";		
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 	}
+	
+	public int listarEditora(Integer i) {
+		String sql = "select * from tb_editora where nrCNPJ = " + i + ";";
+		System.out.println(sql);
+		int id = 0;
+		List<Editora> editora = new ArrayList<Editora>();
+		try {
+			PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
+			ResultSet rs = prepareStatement.executeQuery();
+			while (rs.next()) {
+				id = rs.getInt("nrCNPJ");
+			}
+			prepareStatement.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return id;
+	}	
 
 }

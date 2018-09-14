@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Editora;
 import model.Escritor;
 
 public class EscritorJdbcDAO {
@@ -24,12 +25,31 @@ public class EscritorJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
-	public void deletar(int idSelect) throws SQLException {
-		String sql = "delete from tb_escritor where id='"+idSelect+"'";		
+	public void deletar(int cpfSelect) throws SQLException {
+		String sql = "delete from tb_escritor where nrCPF='"+cpfSelect+"'";		
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
-
+	
+	public int listarEscritor(Integer i) {
+		String sql = "select * from tb_escritor where nrCPF= " + i + ";";
+		System.out.println(sql);
+		int cd = 0;
+		List<Escritor> escritor = new ArrayList<Escritor>();
+		try {
+			PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
+			ResultSet rs = prepareStatement.executeQuery();
+			while (rs.next()) {
+				cd = rs.getInt("nrCPF");
+			}
+			prepareStatement.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return cd;
+	}	
+	
 }
